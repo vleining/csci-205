@@ -1,30 +1,21 @@
-public class LL2 <E>{
-	private E data;
-	private LL2 forwards;
-	private LL2 backwards;
+public class LL2Client {
 
-	public LL2(E data){
-		this.data = data;
-		forwards = null;
-		backwards = null;
-	}
-
-	public E getData () {
-		return data;
-	}
-	public void setData (E data){
-		this.data = data;
-	}
-	public LL2 getForwards(){
-		return forwards;
-	}
-	public void setForwards(LL2 forwards){
-		this.forwards = forwards;
-	}
-	public LL2 getBackwards(){
-		return backwards;
-	}
-	public void setBackwards(LL2 backwards){
-		this.backwards = backwards;
+	public static void main(String[] args){
+		Queue<Integer> queue = new Queue<Integer>();
+		queue.pushQueue(5);
+		queue.pushQueue(11);
+		queue.pushQueue(32);
+		queue.pushQueue(7);
+		System.out.println(queue.popQueue());
+		System.out.println(queue.popQueue());
+		System.out.println(queue.popQueue());
+		System.out.println(queue.popQueue());
+		Queue<String> one = new Queue<String>("hi there");
+		one.pushQueue("My name is ");
+		one.pushQueue("Alfred");
+		System.out.println(one.popQueue());
+		System.out.println(one.popQueue());
+		System.out.println(one.popQueue());
 	}
 }
+		
