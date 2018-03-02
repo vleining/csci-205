@@ -57,4 +57,74 @@ public class BinaryTree {
 		} 
 		return out+ ", "+two;
 	}
+	public boolean deleteTree (int data){
+		TreeNode position = root;
+		TreeNode trailer = root;
+		boolean side = false;
+		while (position != null && position.getData() != data){
+			trailer = position;
+			if (data> position.getData()){
+				position = position.getRight();
+				side = true;
+			} else {
+				position = position.getLeft();
+				side = false;
+			}
+		}
+		if (position == null) {
+			return false;
+		}
+		if (!(position.getLeft()!= null && position.getRight()!= null)){
+			simpleDelete(position,trailer,side);
+			return true;
+		}
+		TreeNode position1 = position.getRight();
+		TreeNode trailer1 = position;
+		side = true;
+		while(position1.getLeft()!= null){
+			trailer1 = position1;
+			side = false;
+			position1 = position1.getLeft();
+		}
+		position.setData(position1.getData());
+		simpleDelete(position1,trailer1,side);
+		return true;
+	}
+
+	private void simpleDelete(TreeNode position, TreeNode trailer, boolean side){
+		if (position.getLeft()==null && position.getRight()==null){
+			if (position == trailer) {
+				root = null;
+			} else {
+				if (side) {
+					trailer.setRight(null);
+				} else {
+					trailer.setLeft(null);
+				}
+			}
+		}
+		if (position.getLeft()==null && position.getRight()!= null){
+			if (position == trailer) {
+				root = position.getRight();
+			} else {
+				if (side) {
+					trailer.setRight(position.getRight());
+				} else {
+					trailer.setLeft(position.getRight());
+				}
+			}
+		}
+		if (position.getLeft()!= null && position.getRight()==null){
+			if (position == trailer) {
+				root = position.getLeft();
+			} else {
+				if (side) {
+					trailer.setRight(position.getLeft());
+				} else {
+					trailer.setLeft(position.getLeft());
+				}
+			}	
+		}
+	}
+		
 }
